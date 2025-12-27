@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoLocal | Power for Independent Business</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #0ea5e9;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --light-border: rgba(186, 199, 218, 0.12);
+            --glass: rgba(15, 23, 42, 0.65);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--light-border);
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            margin-right: 12px;
+            background: linear-gradient(135deg, var(--accent), #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.02rem;
+            position: relative;
+            padding: 6px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-toggle:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 140px 0 100px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 680px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 28px;
+            background: linear-gradient(to right, var(--text), #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 650px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 42px;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
+        }
+
+        .btn:hover {
+            background: #0284c7;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.5);
+        }
+
+        .btn i {
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+
+        .btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            margin-left: 20px;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(14, 165, 233, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.25);
+        }
+
+        .hero-img {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 58%;
+            height: 85%;
+            border-radius: 24px 0 0 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .hero-img:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Value Proposition */
+        .value {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .value::before,
+        .value::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.04;
+        }
+
+        .value::before {
+            top: -150px;
+            left: -100px;
+            background: var(--accent);
+        }
+
+        .value::after {
+            bottom: -150px;
+            right: -100px;
+            background: var(--accent);
+        }
+
+        .value h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(to right, var(--text), #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .value p.subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin: 0 auto 70px;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .value-card {
+            background: var(--glass);
+            border: 1px solid var(--light-border);
+            padding: 40px 32px;
+            border-radius: 20px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .value-card:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(14, 165, 233, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--accent);
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            background: rgba(14, 165, 233, 0.25);
+            transform: scale(1.1);
+        }
+
+        .value-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            text-align: center;
+            font-weight: 300;
+        }
+
+        /* Results */
+        .results {
+            padding: 120px 0;
+            background: rgba(10, 15, 30, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 20%);
+            z-index: 0;
+        }
+
+        .results-content {
+            display: flex;
+            gap: 70px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .results-text h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, var(--text), #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .results-text p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 28px 20px;
+            background: var(--glass);
+            border: 1px solid var(--light-border);
+            border-radius: 16px;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-family: 'Inter', monospace;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(14, 165, 233, 0.18);
+            color: var(--accent);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            margin-top: 25px;
+            border: 1px solid rgba(14, 165, 233, 0.35);
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        .badge i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .case-img {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            height: 420px;
+            position: relative;
+        }
+
+        .case-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .case-img:hover img {
+            transform: scale(1.05);
+        }
+
+        /* CTA */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), transparent);
+            z-index: 0;
+        }
+
+        .cta-content {
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 28px;
+            background: linear-gradient(to right, var(--text), #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 90px 0 40px;
+            border-top: 1px solid var(--light-border);
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 28px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 400;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 6px;
+        }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-border);
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 2.9rem;
+            }
+            .value h2,
+            .results h2,
+            .cta h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-img {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                transform: none;
+                top: 0;
+                margin-top: 60px;
+                border-radius: 20px;
+            }
+            .hero::before {
+                display: none;
+            }
+            .hero-content {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .results-content {
+                flex-direction: column;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 30px 0;
+                border-top: 1px solid var(--light-border);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            .nav-links li {
+                margin: 20px 0;
+                text-align: center;
+            }
+            .hero {
+                padding: 130px 0 70px;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero p {
+                font-size: 1.15rem;
+            }
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            .btn-outline {
+                margin-left: 0;
+                width: 100%;
+                max-width: 320px;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            .case-img {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .value h2,
+            .results h2,
+            .cta h2 {
+                font-size: 2.1rem;
+            }
+            .stat-value {
+                font-size: 1.9rem;
+            }
+            .btn {
+                padding: 14px 32px;
+                font-size: 1rem;
+            }
+            .case-img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-store"></i>
+                GoLocal
+            </a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#value">Why GoLocal</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#contact">Get Started</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Give Your Business the Tools to Compete—Without Selling Your Soul</h1>
+                <p>GoLocal provides independent businesses with verified, high-quality digital solutions that drive real growth, protect customers from fraud, and stand up to corporate giants—on your terms.</p>
+                <div class="btn-group" style="display: flex; gap: 20px;">
+                    <a href="#contact" class="btn">Start Your Free Assessment <i class="fas fa-arrow-right"></i></a>
+                    <a href="#value" class="btn btn-outline">See How It Works</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img 
+                src="https://images.unsplash.com/photo-1553877522-43263f23e10c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=900&q=80" 
+                alt="Local business owner confidently using GoLocal platform"
+                loading="lazy"
+            >
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value" id="value">
+        <div class="container">
+            <h2>Built for Business. Backed by Integrity.</h2>
+            <p class="subtitle">We combine strategic business tools with ironclad verification—so you grow with confidence.</p>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fast-Track Digital Presence</h3>
+                    <p>Launch high-converting sales funnels in days—not months—designed specifically for local customer behavior.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Strategic Brand Positioning</h3>
+                    <p>Stand out in your market with branding that communicates trust, quality, and authentic local pride.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Verified Trust & Fraud Protection</h3>
+                    <p>Every product and claim is verified. Your customers are protected. Your reputation stays intact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results" id="results">
+        <div class="container">
+            <div class="results-content">
+                <div class="results-text">
+                    <h2>Real Growth for Real Businesses</h2>
+                    <p>After implementing GoLocal, ‘Haven Books’—a 20-year-old independent bookstore—achieved what they thought was impossible: competing head-to-head with online giants.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">+185%</div>
+                            <div class="stat-label">Online Sales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">94%</div>
+                            <div class="stat-label">Repeat Customers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Fraud Incidents</div>
+                        </div>
+                    </div>
+                    
+                    <p>“GoLocal gave us the business infrastructure to thrive online—without compromising our values or community roots.”<br>— Elena Rodriguez, Owner</p>
+                    
+                    <div class="badge">
+                        <i class="fas fa-check-circle"></i>
+                        GOLOCAL VERIFIED BUSINESS
+                    </div>
+                </div>
+                <div class="case-img">
+                    <img 
+                        src="https://images.unsplash.com/photo-1515263488512-b9f845a61e5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800&q=80" 
+                        alt="Haven Books bookstore interior with happy customers browsing"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Compete on Your Terms?</h2>
+                <p>Join hundreds of independent businesses using GoLocal to grow ethically, profitably, and sustainably.</p>
+                <a href="#" class="btn">Get Your Free Business Assessment <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GoLocal</h3>
+                    <p style="color: var(--text-secondary); margin: 24px 0; font-weight: 300; line-height: 1.7;">
+                        Empowering independent businesses to compete with integrity, verified quality, and strategic advantage.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3>Solutions</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Digital Funnels</a></li>
+                        <li><a href="#">Brand Strategy</a></li>
+                        <li><a href="#">Fraud Protection</a></li>
+                        <li><a href="#">Verification Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#value">Why GoLocal</a></li>
+                        <li><a href="#results">Success Stories</a></li>
+                        <li><a href="#">Integrity Protocol</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 GoLocal. All rights reserved. | Verified. Protected. Independent.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.querySelector('i').classList.remove('fa-times');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = window.innerWidth > 768 ? 90 : 70;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '15px 0';
+                header.style.background = 'rgba(15, 23, 42, 0.95)';
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.padding = '20px 0';
+                header.style.background = 'rgba(15, 23, 42, 0.85)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
