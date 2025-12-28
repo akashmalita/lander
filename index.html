@@ -1,551 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoLocal | Power for Independent Business</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoLocal - Trusted Commerce Tools for Independent Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #0ea5e9;
-            --text: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --light-border: rgba(186, 199, 218, 0.12);
-            --glass: rgba(15, 23, 42, 0.65);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d29;
+            --card: #252936;
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --accent: #8b5cf6;
+            --text: #e5e7eb;
+            --text-dim: #9ca3af;
+            --border: #2d3244;
+            --success: #10b981;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Header */
-        header {
-            position: fixed;
+        /* Navigation */
+        nav {
+            background: rgba(15, 17, 23, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            position: sticky;
             top: 0;
-            width: 100%;
-            padding: 20px 0;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--light-border);
-            transition: var(--transition);
+            z-index: 100;
         }
 
-        .header-content {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent);
-            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
             display: flex;
             align-items: center;
-            letter-spacing: -0.5px;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .logo i {
-            margin-right: 12px;
-            background: linear-gradient(135deg, var(--accent), #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
         }
 
-        .nav-links {
+        .logo::before {
+            content: '</>';
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+
+        .trust-badge {
             display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 32px;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--success);
             font-weight: 600;
-            font-size: 1.02rem;
+        }
+
+        .trust-badge i {
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
             position: relative;
-            padding: 6px 0;
-            transition: var(--transition);
+            overflow: hidden;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 60%);
+            pointer-events: none;
         }
 
-        .nav-links a::after {
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.1) 30%, rgba(59, 130, 246, 0.1) 70%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(139, 92, 246, 0.1) 30%, rgba(139, 92, 246, 0.1) 70%, transparent 70%);
+            background-size: 40px 40px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(20px, 20px) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .highlight {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .highlight::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: var(--transition);
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
         }
 
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: var(--transition);
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.5);
         }
 
-        .mobile-toggle:hover {
-            color: var(--accent);
+        .cta-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
         }
 
-        /* Hero */
-        .hero {
-            min-height: 100vh;
+        .social-proof {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .social-proof-item {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .social-proof i {
+            color: var(--success);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--surface);
             position: relative;
-            padding: 140px 0 100px;
-            overflow: hidden;
         }
 
-        .hero-content {
-            max-width: 680px;
-            z-index: 2;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 3.4rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 28px;
-            background: linear-gradient(to right, var(--text), #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            font-weight: 300;
-            max-width: 650px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 42px;
-            background: var(--accent);
-            color: var(--primary);
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.35);
-        }
-
-        .btn:hover {
-            background: #0284c7;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.5);
-        }
-
-        .btn i {
-            margin-left: 10px;
-            transition: var(--transition);
-        }
-
-        .btn:hover i {
-            transform: translateX(4px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            margin-left: 20px;
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: rgba(14, 165, 233, 0.12);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.25);
-        }
-
-        .hero-img {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 58%;
-            height: 85%;
-            border-radius: 24px 0 0 24px;
-            overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-
-        .hero-img::before {
+        .features::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, transparent 100%);
-            z-index: 2;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
-        .hero-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .hero-img:hover img {
-            transform: scale(1.03);
-        }
-
-        /* Value Proposition */
-        .value {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .value::before,
-        .value::after {
+        .features::after {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            z-index: 0;
-            opacity: 0.04;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
-        .value::before {
-            top: -150px;
-            left: -100px;
-            background: var(--accent);
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .value::after {
-            bottom: -150px;
-            right: -100px;
-            background: var(--accent);
-        }
-
-        .value h2 {
+        .section-title {
             text-align: center;
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-            background: linear-gradient(to right, var(--text), #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .value p.subtitle {
+        .section-title::before {
+            content: '// ';
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-right: 0.5rem;
+        }
+
+        .section-subtitle {
             text-align: center;
-            color: var(--text-secondary);
-            max-width: 750px;
-            margin: 0 auto 70px;
-            font-size: 1.2rem;
-            font-weight: 300;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
         }
 
-        .value-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            position: relative;
-            z-index: 1;
+            gap: 2rem;
         }
 
-        .value-card {
-            background: var(--glass);
-            border: 1px solid var(--light-border);
-            padding: 40px 32px;
-            border-radius: 20px;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
+        .feature-card {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .value-card::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), transparent);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .value-card:hover {
-            border-color: rgba(14, 165, 233, 0.4);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .value-card:hover::before {
-            opacity: 1;
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .feature-card p {
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .services::before {
+            content: '{ }';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            font-size: 15rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(59, 130, 246, 0.03);
+            font-weight: 700;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            color: var(--text);
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .service-card p {
+            color: var(--text-dim);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .mission::before {
+            content: '01010011';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            font-size: 8rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(59, 130, 246, 0.05);
+            font-weight: 700;
+            pointer-events: none;
+            letter-spacing: 0.5rem;
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mission-text h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+        }
+
+        .mission-text h2::before {
+            content: 'const ';
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .mission-values {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
         }
 
         .value-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(14, 165, 233, 0.15);
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            color: var(--accent);
-            font-size: 2rem;
-            transition: var(--transition);
+            flex-shrink: 0;
         }
 
-        .value-card:hover .value-icon {
-            background: rgba(14, 165, 233, 0.25);
-            transform: scale(1.1);
-        }
-
-        .value-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .value-card p {
-            color: var(--text-secondary);
-            text-align: center;
-            font-weight: 300;
-        }
-
-        /* Results */
-        .results {
-            padding: 120px 0;
-            background: rgba(10, 15, 30, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .results::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.08) 0%, transparent 20%);
-            z-index: 0;
-        }
-
-        .results-content {
-            display: flex;
-            gap: 70px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .results-text h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            background: linear-gradient(to right, var(--text), #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .results-text p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
+        .value-icon i {
+            color: var(--success);
             font-size: 1.1rem;
-            font-weight: 300;
         }
 
-        .stats {
+        .value-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .value-content p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 40px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .stat-item {
+        .stat-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
             text-align: center;
-            padding: 28px 20px;
-            background: var(--glass);
-            border: 1px solid var(--light-border);
-            border-radius: 16px;
-            transition: var(--transition);
-            backdrop-filter: blur(8px);
         }
 
-        .stat-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-family: 'Inter', monospace;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .stat-label {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(14, 165, 233, 0.18);
-            color: var(--accent);
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            margin-top: 25px;
-            border: 1px solid rgba(14, 165, 233, 0.35);
-            font-weight: 600;
-            backdrop-filter: blur(5px);
-        }
-
-        .badge i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        .case-img {
-            width: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-            height: 420px;
-            position: relative;
-        }
-
-        .case-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .case-img:hover img {
-            transform: scale(1.05);
-        }
-
-        /* CTA */
-        .cta {
-            padding: 120px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), transparent);
-            z-index: 0;
-        }
-
-        .cta-content {
-            max-width: 750px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 28px;
-            background: linear-gradient(to right, var(--text), #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .cta p {
-            color: var(--text-secondary);
-            font-size: 1.25rem;
-            font-weight: 300;
-            margin-bottom: 40px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
         }
 
         /* Footer */
         footer {
-            padding: 90px 0 40px;
-            border-top: 1px solid var(--light-border);
-            position: relative;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
         }
 
-        .footer-grid {
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-col h3 {
-            font-size: 1.4rem;
-            margin-bottom: 28px;
-            color: var(--accent);
-            font-weight: 700;
+        .footer-section h4 {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .footer-section h4::before {
+            content: '> ';
+            color: var(--primary);
+        }
+
+        .footer-section p {
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
         .footer-links {
@@ -553,355 +608,342 @@
         }
 
         .footer-links li {
-            margin-bottom: 16px;
+            margin-bottom: 0.7rem;
         }
 
         .footer-links a {
-            color: var(--text-secondary);
+            color: var(--text-dim);
             text-decoration: none;
-            transition: var(--transition);
-            font-weight: 400;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 6px;
+            color: var(--primary);
         }
 
-        .copyright {
+        .footer-bottom {
             text-align: center;
-            color: var(--text-secondary);
-            font-size: 1rem;
-            padding-top: 30px;
-            border-top: 1px solid var(--light-border);
-            font-weight: 300;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.9rem;
         }
 
         /* Responsive */
-        @media (max-width: 1100px) {
-            .hero h1 {
-                font-size: 2.9rem;
-            }
-            .value h2,
-            .results h2,
-            .cta h2 {
-                font-size: 2.4rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-img {
-                position: relative;
-                width: 100%;
-                height: 400px;
-                transform: none;
-                top: 0;
-                margin-top: 60px;
-                border-radius: 20px;
-            }
-            .hero::before {
-                display: none;
-            }
-            .hero-content {
-                text-align: center;
-                margin: 0 auto;
-            }
-            .btn-group {
-                justify-content: center;
-            }
-            .results-content {
-                flex-direction: column;
-            }
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
+            nav {
+                padding: 1rem 1.5rem;
             }
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 30px 0;
-                border-top: 1px solid var(--light-border);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: var(--transition);
-            }
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            .nav-links li {
-                margin: 20px 0;
-                text-align: center;
-            }
+
             .hero {
-                padding: 130px 0 70px;
+                padding: 4rem 1.5rem;
             }
-            .hero h1 {
-                font-size: 2.4rem;
+
+            .features, .mission {
+                padding: 4rem 1.5rem;
             }
-            .hero p {
-                font-size: 1.15rem;
-            }
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-            }
-            .btn-outline {
-                margin-left: 0;
-                width: 100%;
-                max-width: 320px;
-            }
-            .stats {
+
+            .features-grid {
                 grid-template-columns: 1fr;
             }
-            .case-img {
-                height: 350px;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.1rem;
+            .mission-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
-            .value h2,
-            .results h2,
-            .cta h2 {
-                font-size: 2.1rem;
+
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
-            .stat-value {
-                font-size: 1.9rem;
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            .btn {
-                padding: 14px 32px;
-                font-size: 1rem;
-            }
-            .case-img {
-                height: 300px;
+
+            .social-proof {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-content">
-            <a href="#" class="logo">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
                 <i class="fas fa-store"></i>
-                GoLocal
-            </a>
-            <button class="mobile-toggle" id="mobileToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#value">Why GoLocal</a></li>
-                <li><a href="#results">Results</a></li>
-                <li><a href="#contact">Get Started</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Give Your Business the Tools to Compete—Without Selling Your Soul</h1>
-                <p>GoLocal provides independent businesses with verified, high-quality digital solutions that drive real growth, protect customers from fraud, and stand up to corporate giants—on your terms.</p>
-                <div class="btn-group" style="display: flex; gap: 20px;">
-                    <a href="#contact" class="btn">Start Your Free Assessment <i class="fas fa-arrow-right"></i></a>
-                    <a href="#value" class="btn btn-outline">See How It Works</a>
-                </div>
+                <span>GoLocal</span>
+            </div>
+            <div class="trust-badge">
+                <i class="fas fa-shield-check"></i>
+                <span>Verified & Trusted</span>
             </div>
         </div>
-        <div class="hero-img">
-            <img 
-                src="https://images.unsplash.com/photo-1553877522-43263f23e10c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=900&q=80" 
-                alt="Local business owner confidently using GoLocal platform"
-                loading="lazy"
-            >
-        </div>
-    </section>
+    </nav>
 
-    <!-- Value Proposition -->
-    <section class="value" id="value">
-        <div class="container">
-            <h2>Built for Business. Backed by Integrity.</h2>
-            <p class="subtitle">We combine strategic business tools with ironclad verification—so you grow with confidence.</p>
-            <div class="value-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Fast-Track Digital Presence</h3>
-                    <p>Launch high-converting sales funnels in days—not months—designed specifically for local customer behavior.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empowering <span class="highlight">Local Businesses</span> with Enterprise-Grade Tools</h1>
+            <p class="subtitle">Developer-built commerce platform that helps independent businesses compete fairly. Transparent pricing, full ownership of your data, and no corporate middlemen taking cuts.</p>
+            <a href="#features" class="cta-button">Get Started Free</a>
+            
+            <div class="social-proof">
+                <div class="social-proof-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>No credit card required</span>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3>Strategic Brand Positioning</h3>
-                    <p>Stand out in your market with branding that communicates trust, quality, and authentic local pride.</p>
+                <div class="social-proof-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Open source</span>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Verified Trust & Fraud Protection</h3>
-                    <p>Every product and claim is verified. Your customers are protected. Your reputation stays intact.</p>
+                <div class="social-proof-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Community supported</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results -->
-    <section class="results" id="results">
-        <div class="container">
-            <div class="results-content">
-                <div class="results-text">
-                    <h2>Real Growth for Real Businesses</h2>
-                    <p>After implementing GoLocal, ‘Haven Books’—a 20-year-old independent bookstore—achieved what they thought was impossible: competing head-to-head with online giants.</p>
-                    
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-value">+185%</div>
-                            <div class="stat-label">Online Sales</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">94%</div>
-                            <div class="stat-label">Repeat Customers</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">0</div>
-                            <div class="stat-label">Fraud Incidents</div>
-                        </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">Built on Trust & Transparency</h2>
+            <p class="section-subtitle">Professional tools designed by developers who believe local businesses deserve better than extractive platforms.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
                     </div>
-                    
-                    <p>“GoLocal gave us the business infrastructure to thrive online—without compromising our values or community roots.”<br>— Elena Rodriguez, Owner</p>
-                    
-                    <div class="badge">
-                        <i class="fas fa-check-circle"></i>
-                        GOLOCAL VERIFIED BUSINESS
-                    </div>
+                    <h3>Your Data, Your Control</h3>
+                    <p>Complete ownership of your customer data and business information. We never sell your data or use it for advertising. Privacy-first architecture with end-to-end encryption.</p>
                 </div>
-                <div class="case-img">
-                    <img 
-                        src="https://images.unsplash.com/photo-1515263488512-b9f845a61e5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800&q=80" 
-                        alt="Haven Books bookstore interior with happy customers browsing"
-                        loading="lazy"
-                    >
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Open Source Foundation</h3>
+                    <p>Fully transparent codebase reviewed by the developer community. No hidden algorithms or black boxes. You can audit, customize, and contribute to the platform.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3>Fair & Transparent Pricing</h3>
+                    <p>No commission fees or revenue sharing. Simple, predictable costs. We make money from optional premium features, not by taking a cut of your sales.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta" id="contact">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Compete on Your Terms?</h2>
-                <p>Join hundreds of independent businesses using GoLocal to grow ethically, profitably, and sustainably.</p>
-                <a href="#" class="btn">Get Your Free Business Assessment <i class="fas fa-arrow-right"></i></a>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="features-container">
+            <h2 class="section-title">What We Build</h2>
+            <p class="section-subtitle">Production-ready services powered by modern tech stacks. Deploy in minutes, scale infinitely.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Commerce Engine</h3>
+                    </div>
+                    <p>Headless e-commerce API with real-time inventory, payment processing, and order management.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Analytics Dashboard</h3>
+                    </div>
+                    <p>Privacy-focused analytics with real-time metrics, custom events, and conversion tracking.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">ClickHouse</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag">D3.js</span>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Customer CRM</h3>
+                    </div>
+                    <p>Manage customer relationships with automated workflows, segmentation, and email campaigns.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">React</span>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Storefront Builder</h3>
+                    </div>
+                    <p>Blazing-fast storefronts with SSR, edge caching, and mobile-first responsive design.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">Vercel</span>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Auth & Security</h3>
+                    </div>
+                    <p>Enterprise-grade authentication with OAuth, 2FA, and role-based access control.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag">OAuth2</span>
+                        <span class="tech-tag">bcrypt</span>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Assistant</h3>
+                    </div>
+                    <p>Conversational AI for customer support, product recommendations, and automated responses.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">Vector DB</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <div class="mission-text">
+                <h2>Why GoLocal Exists</h2>
+                <p>Big tech platforms charge 20-30% commissions, control your customer relationships, and change terms without notice. We built GoLocal to give independent businesses the same powerful tools—without the exploitation.</p>
+                <p>Created by developers who saw local businesses struggle against monopolistic platforms. We believe commerce tools should serve businesses, not extract from them.</p>
+                
+                <div class="mission-values">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Community First</h4>
+                            <p>Built with input from real business owners and maintained by an active developer community.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Level Playing Field</h4>
+                            <p>Enterprise features at fair prices. No tiered access—everyone gets the full toolkit.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Built to Last</h4>
+                            <p>Sustainable business model, not venture-backed growth at all costs. Your platform won't disappear.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">0%</span>
+                    <div class="stat-label">Commission on Sales</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <div class="stat-label">Data Ownership</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">Community Support</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">∞</span>
+                    <div class="stat-label">Customization Options</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>GoLocal</h3>
-                    <p style="color: var(--text-secondary); margin: 24px 0; font-weight: 300; line-height: 1.7;">
-                        Empowering independent businesses to compete with integrity, verified quality, and strategic advantage.
-                    </p>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>GoLocal</h4>
+                    <p>Open-source commerce infrastructure for independent businesses. Transparent, fair, and built to empower local economies.</p>
+                    <p style="margin-top: 1rem; font-size: 0.85rem;">© 2025 GoLocal. Licensed under MIT.</p>
                 </div>
-                <div class="footer-col">
-                    <h3>Solutions</h3>
+                <div class="footer-section">
+                    <h4>Platform</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Digital Funnels</a></li>
-                        <li><a href="#">Brand Strategy</a></li>
-                        <li><a href="#">Fraud Protection</a></li>
-                        <li><a href="#">Verification Services</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Roadmap</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h3>Company</h3>
+                <div class="footer-section">
+                    <h4>Community</h4>
                     <ul class="footer-links">
-                        <li><a href="#value">Why GoLocal</a></li>
-                        <li><a href="#results">Success Stories</a></li>
-                        <li><a href="#">Integrity Protocol</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Contribute</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 GoLocal. All rights reserved. | Verified. Protected. Independent.
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
-        const navItems = document.querySelectorAll('.nav-links a');
-
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileToggle.querySelector('i').classList.remove('fa-times');
-                mobileToggle.querySelector('i').classList.add('fa-bars');
-            });
-        });
-
-        // Smooth Scrolling
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offset = window.innerWidth > 768 ? 90 : 70;
-                    window.scrollTo({
-                        top: target.offsetTop - offset,
-                        behavior: 'smooth'
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '15px 0';
-                header.style.background = 'rgba(15, 23, 42, 0.95)';
-                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
-            } else {
-                header.style.padding = '20px 0';
-                header.style.background = 'rgba(15, 23, 42, 0.85)';
-                header.style.boxShadow = 'none';
-            }
         });
     </script>
 </body>
